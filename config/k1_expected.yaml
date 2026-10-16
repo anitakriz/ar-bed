@@ -1,0 +1,19 @@
+defaults:
+  - tq_base
+  - _self_
+
+game:
+  rollout_horizon: 1
+  rollout_gamma: 1.0
+  continuation_samples: 1
+  information_reward_mode: expected
+  likelihood_cache_path: data/tq/tq_feedback_cache_animals.json
+
+data:
+  theta_set_path: data/tq/animals_200.json
+  sampled_train_path: data/tq/train_sampled_states_200animals.jsonl
+  sampled_eval_path: data/tq/eval_sampled_states_200animals.jsonl
+
+training:
+  output_dir: outputs/tq_grpo_blau_k1_expected_{timestamp}
+  resume_from_checkpoint: null

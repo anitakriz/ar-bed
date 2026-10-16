@@ -1,0 +1,32 @@
+# Local credentials
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.sample
+
+# Generated training/evaluation artifacts
+outputs/
+results/
+wandb/
+unsloth_compiled_cache/
+notebooks/
+utils/outputs/
+
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# API/oracle caches and usage logs. These can be regenerated locally.
+data/tq/tq_feedback_cache*.json
+data/tq/tq_feedback_cache*.json.truncated_*
+data/tq/tq_rollout_feedback_cache*.json
+data/tq/tq_rollout_feedback_pair_counts.csv
+data/tq/**/*api_usage*.json
+
+# Large optional checkpoint exports
+*.safetensors
+*.pt
+*.pth

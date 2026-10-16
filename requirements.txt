@@ -1,0 +1,16 @@
+accelerate
+bitsandbytes
+datasets
+hydra-core
+numpy
+omegaconf
+openai
+python-dotenv
+PyYAML
+torch
+tqdm
+transformers==5.5.2
+trl==0.29.1
+tokenizers==0.22.1
+unsloth
+wandb

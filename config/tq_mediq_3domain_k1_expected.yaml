@@ -1,0 +1,50 @@
+defaults:
+  - k1_expected
+  - _self_
+
+mode: train
+
+game:
+  category: disease
+  category_by_domain:
+    dermatology: dermatologic disease
+    neurology: neurologic disease
+    gastroenterology: gastroenterologic disease
+  max_turns: 10
+  question_guidance: >-
+    When useful, frame questions around medically meaningful properties while
+    still choosing whichever yes/no/maybe question best distinguishes the
+    remaining diseases. Every supplied state is a game still in progress. Even
+    if a previous yes answer appears to identify the target, call ask_question
+    exactly once; never finish by announcing a diagnosis.
+  rollout_horizon: 1
+  rollout_gamma: 1.0
+  continuation_samples: 1
+  information_reward_mode: expected
+  likelihood_cache_path: data/tq/tq_feedback_cache_mediq_3domains.json
+
+data:
+  sampled_train_path: data/tq/mediq_3domain_all_turns_20260924/train_1200.jsonl
+  sampled_eval_path: data/tq/mediq_3domain_all_turns_20260924/eval.jsonl
+
+model:
+  enable_reasoning: true
+
+training:
+  output_dir: outputs/tq_mediq_3domain_k1_expected_{timestamp}
+  run_name: ${training.output_dir}
+  resume_from_checkpoint: null
+  eval_strategy: "no"
+  max_completion_length: 2048
+  save_steps: 5
+  save_total_limit: 20
+  gradient_checkpointing: true
+  num_generations: 8
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 16
+
+eval:
+  full_game_enabled: false
+  full_game_eval_theta_set_path: null
+  full_game_eval_words_path: null
+  full_game_max_turns: 10

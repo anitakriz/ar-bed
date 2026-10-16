@@ -1,0 +1,27 @@
+defaults:
+  - tq_base
+  - _self_
+
+mode: build_data
+
+game:
+  category: disease
+  max_turns: 10
+  likelihood_epsilon: 1.0e-12
+  question_guidance: >-
+    When useful, frame questions around medically meaningful properties while
+    still choosing whichever yes/no/maybe question best distinguishes the
+    remaining diseases.
+
+data:
+  api_provider: azure-openai
+  train_states: 400
+  eval_states: 0
+  num_samples_per_trajectory: 3
+  rollout_batch_size: 32
+  num_sampled_hypotheses: 15
+  refill_rounds: 3
+  filter_threshold: 0.1
+
+training:
+  output_dir: outputs/tq_build_mediq_{timestamp}
